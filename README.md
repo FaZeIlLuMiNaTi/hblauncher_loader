@@ -1,3 +1,5 @@
+# hblauncher_loader, but with a nicer title
+
 This is a 3DS homebrew application intended for running under a NCCH(which can be installed via .cia), for booting the *hax payloads. https://smealum.github.io/3ds/  
 
 This app was mostly finished in October 2015, this was finally released on November 25, 2015, due to the custom logo being finished.

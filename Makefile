@@ -36,8 +36,8 @@ INCLUDES	:=	include
 
 VERSION	:=	v1.3
 
-APP_TITLE	:=	hblauncher_loader $(VERSION)
-APP_DESCRIPTION	:=	This boots the *hax payload.
+APP_TITLE	:=	Homebrew Launcher $(VERSION)
+APP_DESCRIPTION	:=	This boots the Homebew Channel
 APP_AUTHOR	:=	yellows8
 
 DEFINES	:=	
@@ -171,16 +171,15 @@ endif
 
 $(OUTPUT).elf	:	$(OFILES)
 
-../Resources/hblauncher_loader.icn	:	$(APP_ICON)
-	@bannertool makesmdh -i "$(APP_ICON)" -o "$@" -s "$(APP_TITLE)" -l "$(APP_TITLE)" -p "$(APP_AUTHOR)" $(ICON_FLAGS)
+../Resources/hblauncher_loader.icn : $(APP_ICON)
+	../bannertool64.exe makesmdh -i "$(APP_ICON)" -o "$@" -s "$(APP_TITLE)" -l "$(APP_TITLE)" -p "$(APP_AUTHOR)"
 
-../Resources/hblauncher_loader.bnr	:	../banner.png
-	@bannertool makebanner -i "$<" -ca ../Resources/hblauncher_loader.cwav -o "$@"
+../Resources/hblauncher_loader.bnr : ../banner.png
+	../bannertool64.exe makebanner -i "$<" -ca ../Resources/hblauncher_loader.cwav -o "$@"
 
-$(OUTPUT).cia	:	$(OUTPUT).elf ../Resources/hblauncher_loader.icn ../Resources/hblauncher_loader.bnr
-	@makerom -f cia -o "$@" -elf $(OUTPUT).elf -rsf ../Resources/hblauncher_loader.rsf -icon ../Resources/hblauncher_loader.icn -banner ../Resources/hblauncher_loader.bnr -exefslogo -ver 1072
-	@echo "built ... hblauncher_loader.cia"
-
+$(OUTPUT).cia : $(OUTPUT).elf 	../Resources/hblauncher_loader.icn 	../Resources/hblauncher_loader.bnr
+	../makerom64.exe -f cia -o "$@" -elf $(OUTPUT).elf -rsf ../Resources/hblauncher_loader.rsf -icon ../Resources/hblauncher_loader.icn -banner ../Resources/hblauncher_loader.bnr -exefslogo -ver 1040
+ 	
 #---------------------------------------------------------------------------------
 # you need a rule like this for each extension you use as binary data
 #---------------------------------------------------------------------------------
